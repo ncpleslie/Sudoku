@@ -6,62 +6,103 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
-    class Program
+    
+
+    public static class Globals
     {
-        static public int maxValue = 4;
-        static public int squareWidth = 2;
-        static public int squareHeight = 2;
+        public const int maxValue = 4;
+        public const int squareWidth = 2;
+        public const int squareHeight = 2;
         static public int[] cellValue = new int[]
         {
                 1,0,2,0,
                 2,4,3,1,
                 4,2,1,3,
-                3,1,4,3
+                3,1,4,2
         };
+    }
 
+    class Program
+    {
         static void Main(string[] args)
         {
-            if (new ValidityChecker(maxValue, squareWidth, squareHeight, cellValue).SquareValid(4))
+            List<int> possibleNums = new Hinter(new ValidityChecker()).RowPossibleValues(1);
+            foreach(int i in possibleNums)
             {
-                Console.WriteLine("Valid");
+                Console.WriteLine(i);
             }
-            else
+        }
+    }
+
+    class Hinter
+    {
+        private readonly ValidityChecker validityChecker;
+        private List<int> listToBeChecked;
+        public Hinter(ValidityChecker validityChecker)
+        {
+            this.validityChecker = validityChecker;
+            
+        }
+
+        public List<int> RowPossibleValues(int rowNumber)
+        {
+            validityChecker.SetRow(rowNumber);
+            listToBeChecked = validityChecker.GetListToBeChecked();
+            return PossibleValues();
+        }
+
+        public List<int> ColumnPossibleValues(int columnNumber)
+        {
+            validityChecker.SetColumn(columnNumber);
+            listToBeChecked = validityChecker.GetListToBeChecked();
+            return PossibleValues();
+        }
+
+        public List<int> SquarePossibleValues(int squareNumber)
+        {
+            validityChecker.SetSquare(squareNumber);
+            listToBeChecked = validityChecker.GetListToBeChecked();
+            return PossibleValues();
+        }
+
+        private List<int> PossibleValues()
+        {
+            List<int> missingNums = new List<int> { };
+            var range = Enumerable.Range(1, Globals.maxValue);
+
+            if (!validityChecker.CheckBlanks())
             {
-                Console.WriteLine("Not valid");
+                missingNums = range.Except(listToBeChecked).ToList();
             }
+            return missingNums;
         }
     }
 
     class ValidityChecker : IValidityChecker
     {
-        private List<int> lineToBeChecked = new List<int> { };
+        private List<int> listToBeChecked = new List<int> { };
         private readonly int maxValue;
         private readonly int squareWidth;
         private readonly int squareHeight;
         private readonly int[] cellValue;
 
-        public ValidityChecker(int maxValue, int squareWidth, int squareHeight, int[] cellValue)
+        public ValidityChecker()
         {
-            this.maxValue = maxValue;
-            this.squareWidth = squareWidth;
-            this.squareHeight = squareHeight;
-            this.cellValue = cellValue;
+            this.maxValue = Globals.maxValue;
+            this.squareWidth = Globals.squareWidth;
+            this.squareHeight = Globals.squareHeight;
+            this.cellValue = Globals.cellValue;
         }
 
-        public int RowPossibleValues(int rowNumber)
+        public List<int> GetListToBeChecked()
         {
-            SetRow(rowNumber);
-            // check numbers and return whats missing
-            // if nums = 1, 2, 4
-            // return 3
-
-            return 1;
+            return listToBeChecked;
         }
 
-        private bool CheckBlanks()
+        public bool CheckBlanks()
         {
             bool isValid = false;
-            foreach (int num in lineToBeChecked)
+            foreach (int num in listToBeChecked)
             {
                 if (num != 0)
                 {
@@ -79,7 +120,7 @@ namespace Sudoku
         private bool CheckRange()
         {
             bool isValid = false;
-            foreach (int num in lineToBeChecked)
+            foreach (int num in listToBeChecked)
             {
                 if (num < maxValue || num > 0)
                 {
@@ -97,7 +138,7 @@ namespace Sudoku
         private bool CheckDuplicates()
         {
             bool isValid = false;
-            if (lineToBeChecked.Count == lineToBeChecked.Distinct().Count())
+            if (listToBeChecked.Count == listToBeChecked.Distinct().Count())
             {
                 isValid = true;
             }
@@ -109,7 +150,7 @@ namespace Sudoku
             return isValid;
         }
 
-        private void SetRow(int rowNumber)
+        public void SetRow(int rowNumber)
         {
             int rowStart = 0;
             if (rowNumber != 1)
@@ -119,24 +160,22 @@ namespace Sudoku
 
             for (int i = rowStart; i <= rowStart + maxValue - 1; i++)
             {
-                lineToBeChecked.Add(cellValue[i]);
-                Console.WriteLine(cellValue[i]);
+                listToBeChecked.Add(cellValue[i]);
             }
         }
 
-        private void SetColumn(int columnNumber)
+        public void SetColumn(int columnNumber)
         {
             int columnStart = columnNumber - 1;
             int length = cellValue.Count();
 
             for (int i = columnStart; i <= length - 1; i += maxValue)
             {
-                lineToBeChecked.Add(cellValue[i]);
-                Console.WriteLine(cellValue[i]);
+                listToBeChecked.Add(cellValue[i]);
             }
         }
-        
-        private void SetSquare(int squareNumber)
+
+        public void SetSquare(int squareNumber)
         {
             int start;
             if (squareNumber == 1 || squareNumber == 2)
@@ -150,16 +189,13 @@ namespace Sudoku
 
             for (int i = start; i < start + squareWidth; i++)
             {
-
-                lineToBeChecked.Add(cellValue[i]);
-                Console.WriteLine(cellValue[i]);
+                listToBeChecked.Add(cellValue[i]);
             }
 
             int nextRow = start + maxValue;
             for (int i = nextRow; i < nextRow + squareWidth; i++)
             {
-                lineToBeChecked.Add(cellValue[i]);
-                Console.WriteLine(cellValue[i]);
+                listToBeChecked.Add(cellValue[i]);
             }
         }
 

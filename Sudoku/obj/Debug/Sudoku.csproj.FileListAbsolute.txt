@@ -5,3 +5,10 @@ C:\Users\nil0310\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sud
 C:\Users\nil0310\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\obj\Debug\Sudoku.csproj.CoreCompileInputs.cache
 C:\Users\nil0310\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\obj\Debug\Sudoku.exe
 C:\Users\nil0310\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\obj\Debug\Sudoku.pdb
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\bin\Debug\Sudoku.exe.config
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\bin\Debug\Sudoku.exe
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\bin\Debug\Sudoku.pdb
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\obj\Debug\Sudoku.csprojAssemblyReference.cache
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\obj\Debug\Sudoku.csproj.CoreCompileInputs.cache
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\obj\Debug\Sudoku.exe
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku\obj\Debug\Sudoku.pdb
