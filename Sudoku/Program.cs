@@ -42,9 +42,9 @@ namespace Sudoku
 
     class Hinter
     {
-        private readonly ValidityChecker validityChecker;
+        private readonly IValidityChecker validityChecker;
         private List<int> listToBeChecked;
-        public Hinter(ValidityChecker validityChecker)
+        public Hinter(IValidityChecker validityChecker)
         {
             this.validityChecker = validityChecker;
         }
@@ -244,6 +244,11 @@ namespace Sudoku
         bool RowValid(int rowNumber);
         bool ColumnValid(int columnNumber);
         bool SquareValid(int squareNumber);
+        void SetRow(int rowNumber);
+        void SetColumn(int columnNumber);
+        void SetSquare(int squareNumber);
+        bool CheckBlanks();
+        List<int> GetListToBeChecked();
     }
 
     class Set : ISet
