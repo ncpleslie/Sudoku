@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
-    
-
     public static class Globals
     {
         public const int maxValue = 4;
@@ -31,6 +29,14 @@ namespace Sudoku
             {
                 Console.WriteLine(i);
             }
+
+            if (new ValidityChecker().ColumnValid(2))
+            {
+                Console.WriteLine("Valid");
+            } else
+            {
+                Console.WriteLine("Failed");
+            }
         }
     }
 
@@ -41,7 +47,6 @@ namespace Sudoku
         public Hinter(ValidityChecker validityChecker)
         {
             this.validityChecker = validityChecker;
-            
         }
 
         public List<int> RowPossibleValues(int rowNumber)
@@ -88,10 +93,10 @@ namespace Sudoku
 
         public ValidityChecker()
         {
-            this.maxValue = Globals.maxValue;
-            this.squareWidth = Globals.squareWidth;
-            this.squareHeight = Globals.squareHeight;
-            this.cellValue = Globals.cellValue;
+            maxValue = Globals.maxValue;
+            squareWidth = Globals.squareWidth;
+            squareHeight = Globals.squareHeight;
+            cellValue = Globals.cellValue;
         }
 
         public List<int> GetListToBeChecked()
@@ -201,73 +206,36 @@ namespace Sudoku
 
         public bool RowValid(int rowNumber)
         {
-            bool isValid = false;
             SetRow(rowNumber);
 
-            isValid = CheckBlanks();
-            if (isValid == false)
+            if (!CheckBlanks() || !CheckRange() || !CheckDuplicates())
             {
-                return isValid;
+                return false;
             }
-            isValid = CheckRange();
-            if (isValid == false)
-            {
-                return isValid;
-            }
-            isValid = CheckDuplicates();
-            if (isValid == false)
-            {
-                return isValid;
-            }
-            return isValid;
+            return true;
         }
 
         public bool SquareValid(int squareNumber)
         {
-            bool isValid = false;
-
             SetSquare(squareNumber);
 
-            isValid = CheckBlanks();
-            if (isValid == false)
+            if (!CheckBlanks() || !CheckRange() || !CheckDuplicates())
             {
-                return isValid;
+                return false;
             }
-            isValid = CheckRange();
-            if (isValid == false)
-            {
-                return isValid;
-            }
-            isValid = CheckDuplicates();
-            if (isValid == false)
-            {
-                return isValid;
-            }
-            return isValid;
+            return true;
         }
 
         public bool ColumnValid(int columnNumber)
         {
-            bool isValid = false;
 
             SetColumn(columnNumber);
 
-            isValid = CheckBlanks();
-            if (isValid == false)
+            if (!CheckBlanks() || !CheckRange() || !CheckDuplicates())
             {
-                return isValid;
+                return false;
             }
-            isValid = CheckRange();
-            if (isValid == false)
-            {
-                return isValid;
-            }
-            isValid = CheckDuplicates();
-            if (isValid == false)
-            {
-                return isValid;
-            }
-            return isValid;
+            return true;
         }
     }
 
