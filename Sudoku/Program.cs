@@ -24,13 +24,13 @@ namespace Sudoku
     {
         static void Main(string[] args)
         {
-            List<int> possibleNums = new Hinter(new ValidityChecker()).RowPossibleValues(1);
+            List<int> possibleNums = new Hinter(new RowValidityChecker()).ListPossibleValues(1);
             foreach(int i in possibleNums)
             {
                 Console.WriteLine(i);
             }
 
-            if (new ValidityChecker().ColumnValid(2))
+            if (new ColumnValidityChecker().ListValid(1))
             {
                 Console.WriteLine("Valid");
             } else
@@ -49,23 +49,9 @@ namespace Sudoku
             this.validityChecker = validityChecker;
         }
 
-        public List<int> RowPossibleValues(int rowNumber)
+        public List<int> ListPossibleValues(int listNumber)
         {
-            validityChecker.SetRow(rowNumber);
-            listToBeChecked = validityChecker.GetListToBeChecked();
-            return PossibleValues();
-        }
-
-        public List<int> ColumnPossibleValues(int columnNumber)
-        {
-            validityChecker.SetColumn(columnNumber);
-            listToBeChecked = validityChecker.GetListToBeChecked();
-            return PossibleValues();
-        }
-
-        public List<int> SquarePossibleValues(int squareNumber)
-        {
-            validityChecker.SetSquare(squareNumber);
+            validityChecker.SetList(listNumber);
             listToBeChecked = validityChecker.GetListToBeChecked();
             return PossibleValues();
         }
@@ -83,13 +69,71 @@ namespace Sudoku
         }
     }
 
-    class ValidityChecker : IValidityChecker
+    public class SquareValidityChecker : ValidityChecker
     {
-        private List<int> listToBeChecked = new List<int> { };
-        private readonly int maxValue;
-        private readonly int squareWidth;
-        private readonly int squareHeight;
-        private readonly int[] cellValue;
+        public override void SetList(int listNumber)
+        {
+            int start;
+            if (listNumber == 1 || listNumber == 2)
+            {
+                start = (listNumber - 1) * squareWidth;
+            }
+            else
+            {
+                start = (listNumber + 1) * squareWidth;
+            }
+
+            for (int i = start; i < start + squareWidth; i++)
+            {
+                listToBeChecked.Add(cellValue[i]);
+            }
+
+            int nextRow = start + maxValue;
+            for (int i = nextRow; i < nextRow + squareWidth; i++)
+            {
+                listToBeChecked.Add(cellValue[i]);
+            }
+        }
+    }
+
+    public class ColumnValidityChecker : ValidityChecker
+    {
+        public override void SetList(int listNumber)
+        {
+            int columnStart = listNumber - 1;
+            int length = cellValue.Count();
+
+            for (int i = columnStart; i <= length - 1; i += maxValue)
+            {
+                listToBeChecked.Add(cellValue[i]);
+            }
+        }
+    }
+
+    public class RowValidityChecker : ValidityChecker
+    {
+        public override void SetList(int lineNumber)
+        {
+            int rowStart = 0;
+            if (lineNumber != 1)
+            {
+                rowStart = (lineNumber - 1) * maxValue;
+            }
+
+            for (int i = rowStart; i <= rowStart + maxValue - 1; i++)
+            {
+                listToBeChecked.Add(base.cellValue[i]);
+            }
+        }
+    }
+
+    public abstract class ValidityChecker : IValidityChecker
+    {
+        protected List<int> listToBeChecked = new List<int> { };
+        protected readonly int maxValue;
+        protected readonly int squareWidth;
+        protected readonly int squareHeight;
+        protected readonly int[] cellValue;
 
         public ValidityChecker()
         {
@@ -98,6 +142,8 @@ namespace Sudoku
             squareHeight = Globals.squareHeight;
             cellValue = Globals.cellValue;
         }
+
+        public abstract void SetList(int listNumber);
 
         public List<int> GetListToBeChecked()
         {
@@ -155,81 +201,9 @@ namespace Sudoku
             return isValid;
         }
 
-        public void SetRow(int rowNumber)
+        public bool ListValid(int listNumber)
         {
-            int rowStart = 0;
-            if (rowNumber != 1)
-            {
-                rowStart = (rowNumber - 1) * maxValue;
-            }
-
-            for (int i = rowStart; i <= rowStart + maxValue - 1; i++)
-            {
-                listToBeChecked.Add(cellValue[i]);
-            }
-        }
-
-        public void SetColumn(int columnNumber)
-        {
-            int columnStart = columnNumber - 1;
-            int length = cellValue.Count();
-
-            for (int i = columnStart; i <= length - 1; i += maxValue)
-            {
-                listToBeChecked.Add(cellValue[i]);
-            }
-        }
-
-        public void SetSquare(int squareNumber)
-        {
-            int start;
-            if (squareNumber == 1 || squareNumber == 2)
-            {
-                start = (squareNumber - 1) * squareWidth;
-            }
-            else
-            {
-                start = (squareNumber + 1) * squareWidth;
-            }
-
-            for (int i = start; i < start + squareWidth; i++)
-            {
-                listToBeChecked.Add(cellValue[i]);
-            }
-
-            int nextRow = start + maxValue;
-            for (int i = nextRow; i < nextRow + squareWidth; i++)
-            {
-                listToBeChecked.Add(cellValue[i]);
-            }
-        }
-
-        public bool RowValid(int rowNumber)
-        {
-            SetRow(rowNumber);
-
-            if (!CheckBlanks() || !CheckRange() || !CheckDuplicates())
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public bool SquareValid(int squareNumber)
-        {
-            SetSquare(squareNumber);
-
-            if (!CheckBlanks() || !CheckRange() || !CheckDuplicates())
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public bool ColumnValid(int columnNumber)
-        {
-
-            SetColumn(columnNumber);
+            SetList(listNumber);
 
             if (!CheckBlanks() || !CheckRange() || !CheckDuplicates())
             {
@@ -241,12 +215,8 @@ namespace Sudoku
 
     interface IValidityChecker
     {
-        bool RowValid(int rowNumber);
-        bool ColumnValid(int columnNumber);
-        bool SquareValid(int squareNumber);
-        void SetRow(int rowNumber);
-        void SetColumn(int columnNumber);
-        void SetSquare(int squareNumber);
+        bool ListValid(int squareNumber);
+        void SetList(int columnNumber);
         bool CheckBlanks();
         List<int> GetListToBeChecked();
     }
