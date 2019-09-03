@@ -43,8 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleView.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Get.cs" />
+    <Compile Include="Hinter.cs" />
+    <Compile Include="IGame.cs" />
+    <Compile Include="IGet.cs" />
+    <Compile Include="IHinter.cs" />
+    <Compile Include="IValidityChecker.cs" />
+    <Compile Include="IView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidityChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
