@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Sudoku
 {
@@ -19,6 +23,17 @@ namespace Sudoku
         {
             Console.WriteLine(prompt);
             return Console.ReadLine();
+        }
+
+        public void Clear()
+        {
+            Console.Clear();
+        }
+
+        public int[] GetIntArray(string prompt)
+        {
+            Console.WriteLine(prompt);
+            return Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
         }
     }
 }

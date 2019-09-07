@@ -10,30 +10,12 @@ namespace Sudoku
     // Or will return a select int found within a Row, Column, or Sqaure based on two inputs
     class Get : IGet
     {
-        private readonly IGame _game;
-        private readonly int _maxValue;
-        private readonly int _squareWidth;
-        private int[] _cellValue;
+        private readonly Game game;
         private List<int> _listToBeChecked = new List<int> { };
 
-        public Get()
+        public Get(Game game)
         {
-
-        }
-
-        public Get( IGame game )
-        {
-            _game = game;
-            _maxValue = game.GetMaxValue();
-            _squareWidth = game.GetSquareWidth();
-            _cellValue = game.ToArray();
-        }
-        
-        // Get entire list
-        public List<int> GetByColumn(int columnIndex)
-        {
-            SetColumnList(columnIndex);
-            return _listToBeChecked;
+            this.game = game;
         }
 
         // Get individual elements
@@ -46,18 +28,12 @@ namespace Sudoku
         private void SetColumnList(int columnIndex)
         {
             int columnStart = columnIndex - 1;
-            int length = _cellValue.Count();
+            int length = game.CellValue.Count();
 
-            for (int i = columnStart; i <= length - 1; i += _maxValue)
+            for (int i = columnStart; i <= length - 1; i += game.MaxValue)
             {
-                _listToBeChecked.Add(_cellValue[i]);
+                _listToBeChecked.Add(game.CellValue[i]);
             }
-        }
-
-        public List<int> GetByRow(int rowIndex)
-        {
-            SetRowList(rowIndex);
-            return _listToBeChecked;
         }
 
         public int GetByRow(int rowIndex, int columnIndex)
@@ -71,19 +47,13 @@ namespace Sudoku
             int rowStart = 0;
             if (rowIndex != 1)
             {
-                rowStart = (rowIndex - 1) * _maxValue;
+                rowStart = (rowIndex - 1) * game.MaxValue;
             }
 
-            for (int i = rowStart; i <= rowStart + _maxValue - 1; i++)
+            for (int i = rowStart; i <= rowStart + game.MaxValue - 1; i++)
             {
-                _listToBeChecked.Add(_cellValue[i]);
+                _listToBeChecked.Add(game.CellValue[i]);
             }
-        }
-
-        public List<int> GetBySquare(int squareIndex)
-        {
-            SetSquareList(squareIndex);
-            return _listToBeChecked;
         }
 
         public int GetBySquare(int squareIndex, int positionIndex)
@@ -94,26 +64,50 @@ namespace Sudoku
 
         private void SetSquareList(int squareIndex)
         {
+
+            // To be improved
+
             int start;
             if (squareIndex == 1 || squareIndex == 2)
             {
-                start = (squareIndex - 1) * _squareWidth;
+                start = (squareIndex - 1) * game.SquareWidth;
             }
             else
             {
-                start = (squareIndex + 1) * _squareWidth;
+                start = (squareIndex + 1) * game.SquareWidth;
             }
 
-            for (int i = start; i < start + _squareWidth; i++)
+            for (int i = start; i < start + game.SquareWidth; i++)
             {
-                _listToBeChecked.Add(_cellValue[i]);
+                _listToBeChecked.Add(game.CellValue[i]);
             }
 
-            int nextRow = start + _maxValue;
-            for (int i = nextRow; i < nextRow + _squareWidth; i++)
+            int nextRow = start + game.MaxValue;
+            for (int i = nextRow; i < nextRow + game.SquareWidth; i++)
             {
-                _listToBeChecked.Add(_cellValue[i]);
+                _listToBeChecked.Add(game.CellValue[i]);
             }
+        }
+
+        // Get entire list
+        // These will be used when validating user input becomes relevant
+        // At this stage, out of scope of the assignment
+        public List<int> GetByColumn(int columnIndex)
+        {
+            SetColumnList(columnIndex);
+            return _listToBeChecked;
+        }
+
+        public List<int> GetByRow(int rowIndex)
+        {
+            SetRowList(rowIndex);
+            return _listToBeChecked;
+        }
+
+        public List<int> GetBySquare(int squareIndex)
+        {
+            SetSquareList(squareIndex);
+            return _listToBeChecked;
         }
     }
 }

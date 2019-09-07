@@ -1,72 +1,125 @@
-﻿namespace Sudoku
+﻿using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sudoku
 {
-    public class Game : IGame
+    public class Game : IGame, ISet, IGet, ISerialize
     {
-        public int _maxValue;
-        public int _squareWidth;
-        public int _squareHeight;
-        public int[] _cellValue;
+        Set set;
+        Get get;
+        Serialize serialize;
+
+        public int[] CellValue { get; set; }
+        public int SquareHeight { get; set; }
+        public int SquareWidth { get; set; }
+        public int MaxValue { get; set; }
 
         public Game()
         {
-
-        }
-
-        public Game(int maxValue, int squareWidth, int squareHeight, int[] cellValue)
-        {
-            _maxValue = maxValue;
-            _squareWidth = squareWidth;
-            _squareHeight = squareHeight;
-            _cellValue = cellValue;
+            serialize = new Serialize(this);
+            get = new Get(this);
+            set = new Set(this);
         }
 
         public void SetMaxValue(int maximum)
         {
-            _maxValue = maximum;
+            MaxValue = maximum;
         }
 
         public int GetMaxValue()
         {
-            return _maxValue;
-
+            return MaxValue;
         }
 
         public int[] ToArray()
         {
-            return _cellValue;
+            return CellValue;
         }
 
         public void Set(int[] cellValues)
         {
-            _cellValue = cellValues;
+            CellValue = cellValues;
         }
 
         public void SetSquareWidth(int squareWidth)
         {
-            _squareWidth = squareWidth;
+            SquareWidth = squareWidth;
         }
 
         public int GetSquareWidth()
         {
-            return _squareWidth;
+            return SquareWidth;
         }
 
         public void SetSquareHeight(int squareHeight)
         {
-            _squareHeight = squareHeight;
+            SquareHeight = squareHeight;
         }
 
         public int GetSquareHeight()
         {
-            return _squareHeight;
+            return SquareHeight;
         }
 
         public void Restart()
         {
-            _maxValue = 0;
-            _squareWidth = 0;
-            _squareHeight = 0;
-            _cellValue = new int[] { };
+            MaxValue = 0;
+            SquareWidth = 0;
+            SquareHeight = 0;
+            CellValue = new int[] { };
         }
+
+
+        // Implement Set
+        public void SetByColumn(int value, int columnIndex, int rowIndex)
+        {
+            set.SetByColumn(value, columnIndex, rowIndex);
+        }
+        public void SetByRow(int value, int rowIndex, int columnIndex)
+        {
+            set.SetByRow(value, rowIndex, columnIndex);
+        }
+        public void SetBySquare(int value, int squareIndex, int positionIndex)
+        {
+            set.SetBySquare(value, squareIndex, positionIndex);
+        }
+
+        // Implement Get
+        public int GetByColumn(int columnIndex, int rowIndex)
+        {
+            return get.GetByColumn(columnIndex, rowIndex);
+        }
+        public int GetByRow(int rowIndex, int columnIndex)
+        {
+            return get.GetByRow(rowIndex, columnIndex);
+        }
+        public int GetBySquare(int squareIndex, int positionIndex)
+        {
+            return get.GetBySquare(squareIndex, positionIndex);
+        }
+
+        // Implement Serialize
+        public void FromCSV(string csv)
+        {
+            serialize.FromCSV(csv);
+        }
+        public string ToCSV()
+        {
+            return serialize.ToCSV();
+        }
+        public void SetCell(int value, int gridIndex)
+        {
+            serialize.SetCell(value, gridIndex);
+        }
+        public int GetCell(int gridIndex)
+        {
+            return serialize.GetCell(gridIndex);
+        }
+        public string ToPrettyString()
+        {
+            return serialize.ToPrettyString();
+        }
+
     }
 }

@@ -23,7 +23,7 @@ namespace Sudoku
         public List<int> ListPossibleValues()
         {
             List<int> missingNums = new List<int> { };
-            IEnumerable<int> range = Enumerable.Range(start: 1, count: _game._maxValue);
+            IEnumerable<int> range = Enumerable.Range(start: 1, count: _game.MaxValue);
 
             missingNums = range.Except(_listToBeChecked).ToList();
 

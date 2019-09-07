@@ -18,9 +18,9 @@ namespace Sudoku
             this.listToBeChecked = listToBeChecked;
             this.game = game;
             maxValue = game.GetMaxValue();
-            squareWidth = game.GetSquareWidth();
-            squareHeight = game.GetSquareHeight();
-            cellValue = game.ToArray();
+            squareWidth = 2;
+            squareHeight = 2;
+            cellValue = new int[] {1,0,2,0,2,4,3,1,4,2,1,3,3,1,4,2};
         }
 
         public List<int> GetListToBeChecked()
