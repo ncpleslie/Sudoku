@@ -14,7 +14,7 @@ namespace Sudoku
 
         public void FromCSV(string csv)
         {
-            game.CellValue = csv.Split(',').Select(x => int.Parse(x)).ToArray();
+            game.Set(csv.Split(',').Select(x => int.Parse(x)).ToArray());
         }
         public string ToCSV()
         {

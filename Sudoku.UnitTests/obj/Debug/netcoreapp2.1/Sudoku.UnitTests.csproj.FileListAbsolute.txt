@@ -1,0 +1,15 @@
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.dll
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.pdb
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\nunit.engine.netstandard.dll
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\Mono.Cecil.dll
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\Sudoku.UnitTests.deps.json
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\Sudoku.UnitTests.runtimeconfig.json
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\Sudoku.UnitTests.runtimeconfig.dev.json
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\Sudoku.UnitTests.dll
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\Sudoku.UnitTests.pdb
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.csprojAssemblyReference.cache
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.AssemblyInfoInputs.cache
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.AssemblyInfo.cs
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.dll
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.pdb

@@ -21,39 +21,15 @@ namespace Sudoku
         // Get individual elements
         public int GetByColumn(int columnIndex, int rowIndex)
         {
-            SetColumnList(columnIndex);
-            return _listToBeChecked[rowIndex];
-        }
+            columnIndex--;
+            rowIndex--;
 
-        private void SetColumnList(int columnIndex)
-        {
-            int columnStart = columnIndex - 1;
-            int length = game.CellValue.Count();
-
-            for (int i = columnStart; i <= length - 1; i += game.MaxValue)
-            {
-                _listToBeChecked.Add(game.CellValue[i]);
-            }
+            return game.CellValue[rowIndex * game.MaxValue + columnIndex];
         }
 
         public int GetByRow(int rowIndex, int columnIndex)
         {
-            SetRowList(rowIndex);
-            return _listToBeChecked[columnIndex];
-        }
-
-        private void SetRowList(int rowIndex)
-        {
-            int rowStart = 0;
-            if (rowIndex != 1)
-            {
-                rowStart = (rowIndex - 1) * game.MaxValue;
-            }
-
-            for (int i = rowStart; i <= rowStart + game.MaxValue - 1; i++)
-            {
-                _listToBeChecked.Add(game.CellValue[i]);
-            }
+            return GetByColumn(columnIndex, rowIndex);
         }
 
         public int GetBySquare(int squareIndex, int positionIndex)
@@ -98,10 +74,35 @@ namespace Sudoku
             return _listToBeChecked;
         }
 
+        private void SetColumnList(int columnIndex)
+        {
+            int columnStart = columnIndex - 1;
+            int length = game.CellValue.Count();
+
+            for (int i = columnStart; i <= length - 1; i += game.MaxValue)
+            {
+                _listToBeChecked.Add(game.CellValue[i]);
+            }
+        }
+
         public List<int> GetByRow(int rowIndex)
         {
             SetRowList(rowIndex);
             return _listToBeChecked;
+        }
+
+        private void SetRowList(int rowIndex)
+        {
+            int rowStart = 0;
+            if (rowIndex != 1)
+            {
+                rowStart = (rowIndex - 1) * game.MaxValue;
+            }
+
+            for (int i = rowStart; i <= rowStart + game.MaxValue - 1; i++)
+            {
+                _listToBeChecked.Add(game.CellValue[i]);
+            }
         }
 
         public List<int> GetBySquare(int squareIndex)
