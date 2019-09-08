@@ -40,29 +40,33 @@ namespace Sudoku
 
         private void SetSquareList(int squareIndex)
         {
+            int height = game.GetSquareHeight();
+            int width = game.GetSquareWidth();
+            int length = width * width;
+            int maxNum = game.GetMaxValue();
 
-            // To be improved
+            // squareIndex = 0 row=0col=0
+            // squareIndex = 1 row=0col=3
+            // squareIndex = 2 row=0col=6
+            // squareIndex = 3 row=3col=0
+            // squareIndex = 4 row=3col=3
+            // squareIndex = 5 row=3col=6
+            // squareIndex = 6 row=6col=0
+            // squareIndex = 7 row=6col=3
+            // squareIndex = 8 row=6col=6
 
-            int start;
-            if (squareIndex == 1 || squareIndex == 2)
-            {
-                start = (squareIndex - 1) * game.SquareWidth;
-            }
-            else
-            {
-                start = (squareIndex + 1) * game.SquareWidth;
-            }
+            int rowNum = squareIndex / (maxNum / width) * height;
+            int colNum = squareIndex % (maxNum / width) * width;
+            Console.WriteLine($"{rowNum} {colNum}");
 
-            for (int i = start; i < start + game.SquareWidth; i++)
+            for (int row = rowNum; row < height + rowNum; row++)
             {
-                _listToBeChecked.Add(game.CellValue[i]);
-            }
-
-            int nextRow = start + game.MaxValue;
-            for (int i = nextRow; i < nextRow + game.SquareWidth; i++)
-            {
-                _listToBeChecked.Add(game.CellValue[i]);
-            }
+                for (int column = colNum; column < width + colNum; column++)
+                {
+                    Console.WriteLine(game.ToArray()[maxNum * row + column]);
+                    _listToBeChecked.Add(game.ToArray()[maxNum * row + column]);
+                }
+            } 
         }
 
         // Get entire list

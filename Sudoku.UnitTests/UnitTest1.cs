@@ -104,7 +104,7 @@ namespace Tests
         public void ToCSV_ArrayOfInt_ReturnString()
         {
             string csv = "1,0,2,0," +
-              "2,4,3,1," +
+                    "2,4,3,1," +
               "4,2,1,3," +
               "0,0,0,0";
             game.FromCSV(csv);
@@ -152,9 +152,10 @@ namespace Tests
         public void SetBySquare_NumberIsValid_ChangesCellValue()
         {
             var newValue = 2;
-            game.SetBySquare(newValue, 1, 2);
-            bool result = game.CellValue[1] == newValue ? true : false;
-            Assert.IsTrue(result);
+            game.SetBySquare(newValue, 0, 1);
+            var result = game.CellValue[1];
+            Assert.AreEqual(newValue, result);
+            
         }
 
         // Get Tests
@@ -175,8 +176,9 @@ namespace Tests
         [Test]
         public void GetBySquare_NumberIsValid_ReturnsTwo()
         {
-            var value = game.GetBySquare(2, 0);
-            Assert.AreEqual(2, value);
+            var expectedResult = 2;
+            var value = game.GetBySquare(1, 0);
+            Assert.AreEqual(expectedResult, value);
         }
     }
 
@@ -375,7 +377,9 @@ namespace Tests
             if (value < 1 || value > game.MaxValue)
                 throw new System.InvalidOperationException("number out of range");
 
-            // TODO
+            int rowNum = squareIndex / (game.MaxValue / game.SquareWidth) * game.SquareHeight;
+            int colNum = squareIndex % (game.MaxValue / game.SquareWidth) * game.SquareWidth;
+            game.CellValue[game.MaxValue * rowNum + colNum] = value;
         }
     }
 
@@ -411,35 +415,39 @@ namespace Tests
 
         private void SetSquareList(int squareIndex)
         {
+            int height = game.GetSquareHeight();
+            int width = game.GetSquareWidth();
+            int length = width * width;
+            int maxNum = game.GetMaxValue();
 
-            // To be improved
+            // squareIndex = 0 row=0col=0
+            // squareIndex = 1 row=0col=3
+            // squareIndex = 2 row=0col=6
+            // squareIndex = 3 row=3col=0
+            // squareIndex = 4 row=3col=3
+            // squareIndex = 5 row=3col=6
+            // squareIndex = 6 row=6col=0
+            // squareIndex = 7 row=6col=3
+            // squareIndex = 8 row=6col=6
 
-            int start;
-            if (squareIndex == 1 || squareIndex == 2)
-            {
-                start = (squareIndex - 1) * game.SquareWidth;
-            }
-            else
-            {
-                start = (squareIndex + 1) * game.SquareWidth;
-            }
+            int rowNum = squareIndex / (maxNum / width) * height;
+            int colNum = squareIndex % (maxNum / width) * width;
+            Console.WriteLine($"{rowNum} {colNum}");
 
-            for (int i = start; i < start + game.SquareWidth; i++)
+            for (int row = rowNum; row < height + rowNum; row++)
             {
-                _listToBeChecked.Add(game.CellValue[i]);
-            }
-
-            int nextRow = start + game.MaxValue;
-            for (int i = nextRow; i < nextRow + game.SquareWidth; i++)
-            {
-                _listToBeChecked.Add(game.CellValue[i]);
+                for (int column = colNum; column < width + colNum; column++)
+                {
+                    Console.WriteLine(game.ToArray()[maxNum * row + column]);
+                    _listToBeChecked.Add(game.ToArray()[maxNum * row + column]);
+                }
             }
         }
 
-        // Get entire list
-        // These will be used when validating user input becomes relevant
-        // At this stage, out of scope of the assignment
-        public List<int> GetByColumn(int columnIndex)
+            // Get entire list
+            // These will be used when validating user input becomes relevant
+            // At this stage, out of scope of the assignment
+            public List<int> GetByColumn(int columnIndex)
         {
             SetColumnList(columnIndex);
             return _listToBeChecked;

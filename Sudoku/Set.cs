@@ -81,7 +81,9 @@ namespace Sudoku
             if (value < 1 || value > game.MaxValue)
                 throw new System.InvalidOperationException("number out of range");
 
-            // TODO
+            int rowNum = squareIndex / (game.MaxValue / game.SquareWidth) * game.SquareHeight;
+            int colNum = squareIndex % (game.MaxValue / game.SquareWidth) * game.SquareWidth;
+            game.CellValue[game.MaxValue * rowNum + colNum] = value;
         }
     }
 }
