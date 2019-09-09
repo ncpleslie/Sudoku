@@ -13,3 +13,7 @@ C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku
 C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.AssemblyInfo.cs
 C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.dll
 C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.pdb
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\Sudoku.exe
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\Sudoku.pdb
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\bin\Debug\netcoreapp2.1\Sudoku.exe.config
+C:\Users\Nick\OneDrive - Ara Institute of Canterbury\Year 2\Semester 2\C#\Sudoku\InClassCode\Sudoku\Sudoku.UnitTests\obj\Debug\netcoreapp2.1\Sudoku.UnitTests.csproj.CopyComplete

@@ -21,9 +21,6 @@ namespace Sudoku
         // Get individual elements
         public int GetByColumn(int columnIndex, int rowIndex)
         {
-            columnIndex--;
-            rowIndex--;
-
             return game.CellValue[rowIndex * game.MaxValue + columnIndex];
         }
 
@@ -80,7 +77,7 @@ namespace Sudoku
 
         private void SetColumnList(int columnIndex)
         {
-            int columnStart = columnIndex - 1;
+            int columnStart = columnIndex;
             int length = game.CellValue.Count();
 
             for (int i = columnStart; i <= length - 1; i += game.MaxValue)
@@ -97,12 +94,7 @@ namespace Sudoku
 
         private void SetRowList(int rowIndex)
         {
-            int rowStart = 0;
-            if (rowIndex != 1)
-            {
-                rowStart = (rowIndex - 1) * game.MaxValue;
-            }
-
+            int rowStart = rowIndex * game.MaxValue;
             for (int i = rowStart; i <= rowStart + game.MaxValue - 1; i++)
             {
                 _listToBeChecked.Add(game.CellValue[i]);

@@ -8,8 +8,8 @@
 - [x] 7. Reset Game to initial state
 - [X] 8. Timer
 - [x] 9. Cells are ReadOnly if contain data
-- [ ] 10. Errors
-- [ ] 11.
+- [x] 10. Ensure user input is within range
+- [ ] 11. 
 - [ ] 12.
 - [ ] 13.
 - [ ] 14.

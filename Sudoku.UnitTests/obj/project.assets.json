@@ -1645,6 +1645,15 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
+      },
+      "Sudoku/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Sudoku.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Sudoku.dll": {}
+        }
       }
     }
   },
@@ -5742,6 +5751,11 @@
         "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "Sudoku/1.0.0": {
+      "type": "project",
+      "path": "../Sudoku/Sudoku.csproj",
+      "msbuildProject": "../Sudoku/Sudoku.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5749,6 +5763,7 @@
       "Microsoft.NET.Test.Sdk >= 15.8.0",
       "Microsoft.NETCore.App >= 2.1.0",
       "NUnit3TestAdapter >= 3.10.0",
+      "Sudoku >= 1.0.0",
       "nunit >= 3.10.1"
     ]
   },
@@ -5781,7 +5796,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Nick\\OneDrive - Ara Institute of Canterbury\\Year 2\\Semester 2\\C#\\Sudoku\\InClassCode\\Sudoku\\Sudoku\\Sudoku.csproj": {
+              "projectPath": "C:\\Users\\Nick\\OneDrive - Ara Institute of Canterbury\\Year 2\\Semester 2\\C#\\Sudoku\\InClassCode\\Sudoku\\Sudoku\\Sudoku.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

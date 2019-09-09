@@ -67,19 +67,27 @@ namespace Sudoku
             return result;
         }
 
+        private bool IsUserInputNumValid(int userInput)
+        {
+            bool result = true;
+            if (userInput < 1 || userInput > game.MaxValue)
+            {
+                result = false;
+                throw new System.InvalidOperationException("number out of range");
+            }
+            return result;
+        }
+
         public void SetByColumn(int value, int columnIndex, int rowIndex)
         {
-            if (value < 1 || value > game.MaxValue)
-                throw new System.InvalidOperationException("number out of range");
-
-            columnIndex--;
-            rowIndex--;
-
-            int cellsContent = game.CellValue[rowIndex * game.MaxValue + columnIndex];
-
-            if (!IsReadOnly(cellsContent))
+           if (IsUserInputNumValid(value))
             {
-                game.CellValue[rowIndex * game.MaxValue + columnIndex] = value;
+                int cellsContent = game.CellValue[rowIndex * game.MaxValue + columnIndex];
+
+                if (!IsReadOnly(cellsContent))
+                {
+                    game.CellValue[rowIndex * game.MaxValue + columnIndex] = value;
+                }
             }
         }
 
@@ -90,12 +98,17 @@ namespace Sudoku
 
         public void SetBySquare(int value, int squareIndex, int positionIndex)
         {
-            if (value < 1 || value > game.MaxValue)
-                throw new System.InvalidOperationException("number out of range");
-
-            int rowNum = squareIndex / (game.MaxValue / game.SquareWidth) * game.SquareHeight;
-            int colNum = squareIndex % (game.MaxValue / game.SquareWidth) * game.SquareWidth;
-            game.CellValue[game.MaxValue * rowNum + colNum] = value;
+            if (IsUserInputNumValid(value))
+            {
+                int rowNum = squareIndex / (game.MaxValue / game.SquareWidth) * game.SquareHeight;
+                int colNum = squareIndex % (game.MaxValue / game.SquareWidth) * game.SquareWidth;
+                int cellContent = game.CellValue[game.MaxValue * (rowNum + (positionIndex % game.SquareWidth)) + (colNum + (positionIndex % game.SquareWidth))];
+                System.Console.WriteLine(cellContent);
+                if (!IsReadOnly(cellContent))
+                {
+                    game.CellValue[game.MaxValue * (rowNum + (positionIndex % game.SquareWidth)) + (colNum + (positionIndex % game.SquareWidth))] = value;
+                }
+            }
         }
     }
 }
