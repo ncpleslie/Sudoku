@@ -10,17 +10,15 @@ namespace Sudoku
         private readonly int maxValue;
         private readonly int squareWidth;
         private readonly int squareHeight;
-        private readonly int[] cellValue;
-        private readonly IGame game;
+        private readonly Game game;
 
-        public ValidityChecker(IGame game, List<int> listToBeChecked)
+        public ValidityChecker(Game game, List<int> listToBeChecked)
         {
             this.listToBeChecked = listToBeChecked;
             this.game = game;
             maxValue = game.GetMaxValue();
-            squareWidth = 2;
-            squareHeight = 2;
-            cellValue = new int[] {1,0,2,0,2,4,3,1,4,2,1,3,3,1,4,2};
+            squareWidth = game.SquareWidth;
+            squareHeight = game.SquareHeight;
         }
 
         public List<int> GetListToBeChecked()

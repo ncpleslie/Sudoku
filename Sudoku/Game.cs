@@ -10,6 +10,7 @@ namespace Sudoku
         Get get;
         Serialize serialize;
 
+        public string OriginalGame { get; set; }
         public int[] CellValue { get; set; }
         public int SquareHeight { get; set; }
         public int SquareWidth { get; set; }
@@ -39,7 +40,7 @@ namespace Sudoku
 
         public void Set(int[] cellValues)
         {
-            CellValue = cellValues;
+             CellValue = cellValues;
         }
 
         public void SetSquareWidth(int squareWidth)
@@ -64,10 +65,7 @@ namespace Sudoku
 
         public void Restart()
         {
-            MaxValue = 0;
-            SquareWidth = 0;
-            SquareHeight = 0;
-            CellValue = new int[] { };
+            FromCSV(OriginalGame);
         }
 
 
@@ -97,6 +95,21 @@ namespace Sudoku
         public int GetBySquare(int squareIndex, int positionIndex)
         {
             return get.GetBySquare(squareIndex, positionIndex);
+        }
+
+        public List<int> GetByColumn(int columnIndex)
+        {
+            return get.GetByColumn(columnIndex);
+        }
+
+        public List<int> GetByRow(int rowIndex)
+        {
+            return get.GetByRow(rowIndex);
+        }
+
+        public List<int> GetBySquare(int squareIndex)
+        {
+            return get.GetBySquare(squareIndex);
         }
 
         // Implement Serialize

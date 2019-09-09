@@ -30,6 +30,14 @@ namespace Sudoku
             Console.Clear();
         }
 
+        public void ShowList<T>(List<int> list)
+        {
+            foreach (int i in list)
+            {
+                Console.WriteLine(i);
+            }
+        }
+
         public int[] GetIntArray(string prompt)
         {
             Console.WriteLine(prompt);

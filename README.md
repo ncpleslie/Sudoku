@@ -1,3 +1,19 @@
+## Feature List
+[x] 1. Check if row is valid
+[x] 2. Check if column is valid
+[x] 3. Check if square is valid
+[x] 4. Return possible values in empty space in row
+[x] 5. Return possible values in empty space in column
+[x] 6. Return possible values in empty space in square
+[x] 7. Reset Game to initial state
+[X] 8. Timer
+[x] 9. Cells are ReadOnly if contain data
+[ ] 10. Errors
+[ ] 11.
+[ ] 12.
+[ ] 13.
+[ ] 14.
+
 const raw sudoku data = 
 {1,2,3,0,
 2,2,3,0}

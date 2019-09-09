@@ -56,6 +56,17 @@ namespace Sudoku
             this.game = game;
         }
 
+        private bool IsReadOnly(int cellContent) 
+        {
+            bool result = false;
+            if (cellContent != 0)
+            {
+                result = true;
+                throw new System.InvalidOperationException("this cell is readonly");
+            }
+            return result;
+        }
+
         public void SetByColumn(int value, int columnIndex, int rowIndex)
         {
             if (value < 1 || value > game.MaxValue)
@@ -65,10 +76,11 @@ namespace Sudoku
             rowIndex--;
 
             int cellsContent = game.CellValue[rowIndex * game.MaxValue + columnIndex];
-            if (cellsContent != 0)
-                throw new System.InvalidOperationException("this cell is readonly");
 
-            game.CellValue[rowIndex * game.MaxValue + columnIndex] = value;
+            if (!IsReadOnly(cellsContent))
+            {
+                game.CellValue[rowIndex * game.MaxValue + columnIndex] = value;
+            }
         }
 
         public void SetByRow(int value, int rowIndex, int columnIndex)

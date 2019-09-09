@@ -10,7 +10,7 @@ namespace Sudoku
     {
         private readonly Game _game;
         private readonly List<int> _listToBeChecked;
-        public Hinter(Game game, List<int> listToBeChecked)
+        public Hinter(List<int> listToBeChecked, Game game)
         {
             _game = game;
             _listToBeChecked = listToBeChecked;
