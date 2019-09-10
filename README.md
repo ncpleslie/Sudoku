@@ -9,10 +9,11 @@
 - [X] 8. Timer
 - [x] 9. Cells are ReadOnly if contain data
 - [x] 10. Ensure user input is within range
-- [ ] 11. 
-- [ ] 12.
-- [ ] 13.
-- [ ] 14.
+- [x] 11. Check if row/column/square contains blanks
+- [x] 12. Check if row/column/square contains numbers within a valid range
+- [x] 13. Check if row/column/square contains duplicate numbers
+- [x] 14. Store each turn
+- [x] 15. Ability to go back a turn
 
 const raw sudoku data = 
 {1,2,3,0,

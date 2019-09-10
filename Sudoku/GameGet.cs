@@ -8,20 +8,15 @@ namespace Sudoku
 {
     // Get class will return an entire Row, Column, or Square based on a single user input
     // Or will return a select int found within a Row, Column, or Sqaure based on two inputs
-    class Get : IGet
+    public partial class Game : IGet
     {
-        private readonly Game game;
-        private List<int> _listToBeChecked = new List<int> { };
 
-        public Get(Game game)
-        {
-            this.game = game;
-        }
+        private List<int> _listToBeChecked = new List<int> { };
 
         // Get individual elements
         public int GetByColumn(int columnIndex, int rowIndex)
         {
-            return game.CellValue[rowIndex * game.MaxValue + columnIndex];
+            return CellValue[rowIndex * MaxValue + columnIndex];
         }
 
         public int GetByRow(int rowIndex, int columnIndex)
@@ -37,10 +32,10 @@ namespace Sudoku
 
         private void SetSquareList(int squareIndex)
         {
-            int height = game.GetSquareHeight();
-            int width = game.GetSquareWidth();
+            int height = GetSquareHeight();
+            int width = GetSquareWidth();
             int length = width * width;
-            int maxNum = game.GetMaxValue();
+            int maxNum = GetMaxValue();
 
             // squareIndex = 0 row=0col=0
             // squareIndex = 1 row=0col=3
@@ -60,8 +55,8 @@ namespace Sudoku
             {
                 for (int column = colNum; column < width + colNum; column++)
                 {
-                    Console.WriteLine(game.ToArray()[maxNum * row + column]);
-                    _listToBeChecked.Add(game.ToArray()[maxNum * row + column]);
+                    Console.WriteLine(ToArray()[maxNum * row + column]);
+                    _listToBeChecked.Add(ToArray()[maxNum * row + column]);
                 }
             } 
         }
@@ -78,11 +73,11 @@ namespace Sudoku
         private void SetColumnList(int columnIndex)
         {
             int columnStart = columnIndex;
-            int length = game.CellValue.Count();
+            int length = CellValue.Count();
 
-            for (int i = columnStart; i <= length - 1; i += game.MaxValue)
+            for (int i = columnStart; i <= length - 1; i += MaxValue)
             {
-                _listToBeChecked.Add(game.CellValue[i]);
+                _listToBeChecked.Add(CellValue[i]);
             }
         }
 
@@ -94,10 +89,10 @@ namespace Sudoku
 
         private void SetRowList(int rowIndex)
         {
-            int rowStart = rowIndex * game.MaxValue;
-            for (int i = rowStart; i <= rowStart + game.MaxValue - 1; i++)
+            int rowStart = rowIndex * MaxValue;
+            for (int i = rowStart; i <= rowStart + MaxValue - 1; i++)
             {
-                _listToBeChecked.Add(game.CellValue[i]);
+                _listToBeChecked.Add(CellValue[i]);
             }
         }
 

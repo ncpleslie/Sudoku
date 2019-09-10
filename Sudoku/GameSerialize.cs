@@ -3,39 +3,32 @@ using System.Linq;
 
 namespace Sudoku
 {
-    public class Serialize : ISerialize
+    public partial class Game : ISerialize
     {
-        private readonly Game game;
-
-        public Serialize(Game game)
-        {
-            this.game = game;
-        }
-
         public void FromCSV(string csv)
         {
-            game.Set(csv.Split(',').Select(x => int.Parse(x)).ToArray());
-            game.OriginalGame = csv;
+            Set(csv.Split(',').Select(x => int.Parse(x)).ToArray());
+            OriginalGame = csv;
         }
         public string ToCSV()
         {
-            return string.Join(",", game.CellValue);
+            return string.Join(",", CellValue);
         }
         public void SetCell(int value, int gridIndex)
         {
-            game.CellValue[gridIndex] = value;
+            CellValue[gridIndex] = value;
         }
         
         public int GetCell(int gridIndex)
         {
-            return game.CellValue[gridIndex];
+            return CellValue[gridIndex];
         }
         public string ToPrettyString()
         {
 
             string result = $"SUDOKU{Environment.NewLine}";
             int counter = 0;
-            foreach (int i in game.CellValue)
+            foreach (int i in CellValue)
             {
 
                 counter++;
@@ -47,7 +40,7 @@ namespace Sudoku
                     result += $"{i} | ";
                 }
                 
-                if (counter % game.MaxValue == 0)
+                if (counter % MaxValue == 0)
                 {
                     result += Environment.NewLine + Environment.NewLine;
 

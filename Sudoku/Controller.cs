@@ -34,13 +34,14 @@ namespace Sudoku
             //view.Show("Timer Started");
 
             int[] changeCellValue = view.GetIntArray("Please enter a square, index, and new value");
-            while (changeCellValue[0] != -1)
-            {
-                game.SetBySquare(changeCellValue[2], changeCellValue[0], changeCellValue[1]);
-                view.Show(game.ToPrettyString());
-                changeCellValue = view.GetIntArray("Please enter a square, index, and new value");
-            }
 
+            game.SetByRow(changeCellValue[2], changeCellValue[0], changeCellValue[1]);
+            view.Show(game.ToPrettyString());
+                
+
+            game.GoBack();
+
+            view.Show(game.ToPrettyString());
             //timer.Stop();
             //view.Show($"Final Game Time: {timer.GetTime()}");
         }

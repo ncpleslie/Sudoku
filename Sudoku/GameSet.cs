@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace Sudoku
 {
     // Used to set the value of an empty spot to the user inputed value
-    public class Set : ISet
+    public partial class Game : ISet
     {
         /* 
          
@@ -49,12 +49,6 @@ namespace Sudoku
             0*4+1 = 1 index
              */
 
-        private readonly Game game;
-
-        public Set(Game game)
-        {
-            this.game = game;
-        }
 
         private bool IsReadOnly(int cellContent) 
         {
@@ -70,7 +64,7 @@ namespace Sudoku
         private bool IsUserInputNumValid(int userInput)
         {
             bool result = true;
-            if (userInput < 1 || userInput > game.MaxValue)
+            if (userInput < 1 || userInput > MaxValue)
             {
                 result = false;
                 throw new System.InvalidOperationException("number out of range");
@@ -82,11 +76,12 @@ namespace Sudoku
         {
            if (IsUserInputNumValid(value))
             {
-                int cellsContent = game.CellValue[rowIndex * game.MaxValue + columnIndex];
+                int cellsContent = CellValue[rowIndex * MaxValue + columnIndex];
 
                 if (!IsReadOnly(cellsContent))
                 {
-                    game.CellValue[rowIndex * game.MaxValue + columnIndex] = value;
+                    StorePreviousTurn();
+                    CellValue[rowIndex * MaxValue + columnIndex] = value;
                 }
             }
         }
@@ -100,13 +95,14 @@ namespace Sudoku
         {
             if (IsUserInputNumValid(value))
             {
-                int rowNum = squareIndex / (game.MaxValue / game.SquareWidth) * game.SquareHeight;
-                int colNum = squareIndex % (game.MaxValue / game.SquareWidth) * game.SquareWidth;
-                int cellContent = game.CellValue[game.MaxValue * (rowNum + (positionIndex % game.SquareWidth)) + (colNum + (positionIndex % game.SquareWidth))];
-                System.Console.WriteLine(cellContent);
+                int rowNum = squareIndex / (MaxValue / SquareWidth) * SquareHeight;
+                int colNum = squareIndex % (MaxValue / SquareWidth) * SquareWidth;
+                int cellContent = CellValue[MaxValue * (rowNum + (positionIndex % SquareWidth)) + (colNum + (positionIndex % SquareWidth))];
+                
                 if (!IsReadOnly(cellContent))
                 {
-                    game.CellValue[game.MaxValue * (rowNum + (positionIndex % game.SquareWidth)) + (colNum + (positionIndex % game.SquareWidth))] = value;
+                    StorePreviousTurn();
+                    CellValue[MaxValue * (rowNum + (positionIndex % SquareWidth)) + (colNum + (positionIndex % SquareWidth))] = value;
                 }
             }
         }
