@@ -6,7 +6,7 @@
 - [x] 5. Return possible values in empty space in column
 - [x] 6. Return possible values in empty space in square
 - [x] 7. Reset Game to initial state
-- [X] 8. Timer
+- [ ] 8. Number of moves remaining
 - [x] 9. Cells are ReadOnly if contain data
 - [x] 10. Ensure user input is within range
 - [x] 11. Check if row/column/square contains blanks
@@ -14,6 +14,9 @@
 - [x] 13. Check if row/column/square contains duplicate numbers
 - [x] 14. Store each turn
 - [x] 15. Ability to go back a turn
+- [x] 16. Start Timer
+- [x] 17. Stop Timer
+- [x] 18. Return Time played
 
 const raw sudoku data = 
 {1,2,3,0,
