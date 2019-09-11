@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Sudoku
 {
@@ -60,19 +61,37 @@ namespace Sudoku
         }
 
         // Back functionality
-        private Stack<int[]> previousTurns = new Stack<int[]>();
+        private Stack<int[]> _previousTurns = new Stack<int[]>();
 
         private void StorePreviousTurn()
         {
             int[] array = new int[CellValue.Length];
             CellValue.CopyTo(array, 0);
-            previousTurns.Push(array);
+            _previousTurns.Push(array);
         }
 
         public void GoBack()
         {
-            int[] replacement = previousTurns.Pop();
+            int[] replacement = _previousTurns.Pop();
             replacement.CopyTo(CellValue, 0);
+        }
+
+        // used to check a Row, Column, or Square,
+        // and return any possible numbers that are missing from
+        // the Row, Column, or Square
+
+        // Range is 1 to the max possible number
+        // If there are missing spaces then it will
+        // return any possible number that is between 
+        // 1 and the max number
+        public List<int> ListPossibleValues()
+        {
+            List<int> missingNums = new List<int> { };
+            IEnumerable<int> range = Enumerable.Range(start: 1, count: MaxValue);
+
+            missingNums = range.Except(_listToBeChecked).ToList();
+
+            return missingNums;
         }
     }
 }
