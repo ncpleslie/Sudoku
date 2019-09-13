@@ -13,10 +13,11 @@
 - [x] 12. Check if row/column/square contains numbers within a valid range
 - [x] 13. Check if row/column/square contains duplicate numbers
 - [x] 14. Store each turn
-- [x] 15. Ability to go back a turn
-- [x] 16. Start Timer
-- [x] 17. Stop Timer
-- [x] 18. Return Time played
+- [x] 15. Ability to go back a turn (undo)
+- [x] 16. Ability to go forward (redo)
+- [x] 17. Start Timer
+- [x] 18. Stop Timer
+- [x] 19. Return Time played
 
 const raw sudoku data = 
 {1,2,3,0,

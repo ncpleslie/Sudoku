@@ -36,11 +36,19 @@ namespace Sudoku
             int[] changeCellValue = view.GetIntArray("Please enter a square, index, and new value");
 
             game.SetByRow(changeCellValue[2], changeCellValue[0], changeCellValue[1]);
+             changeCellValue = view.GetIntArray("Please enter a square, index, and new value");
+
+            game.SetByRow(changeCellValue[2], changeCellValue[0], changeCellValue[1]);
+
             view.Show(game.ToPrettyString());
-                
 
+            System.Console.WriteLine("Going Back");
             game.GoBack();
-
+            game.GoBack();
+            view.Show(game.ToPrettyString());
+            System.Console.WriteLine("Going Forward");
+            game.GoForward();
+            game.GoForward();
             view.Show(game.ToPrettyString());
             //timer.Stop();
             //view.Show($"Final Game Time: {timer.GetTime()}");

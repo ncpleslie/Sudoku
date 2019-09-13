@@ -60,8 +60,9 @@ namespace Sudoku
             FromCSV(OriginalGame);
         }
 
-        // Back functionality
+        // Back/Forward(undo/redo) functionality
         private Stack<int[]> _previousTurns = new Stack<int[]>();
+        private Stack<int[]> _redoTurns = new Stack<int[]>();
 
         private void StorePreviousTurn()
         {
@@ -74,6 +75,14 @@ namespace Sudoku
         {
             int[] replacement = _previousTurns.Pop();
             replacement.CopyTo(CellValue, 0);
+            _redoTurns.Push(replacement);
+        }
+
+        public void GoForward()
+        {
+            int[] replacement = _redoTurns.Pop();
+            replacement.CopyTo(CellValue, 0);
+            _previousTurns.Push(replacement);
         }
 
         // used to check a Row, Column, or Square,
