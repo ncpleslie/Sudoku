@@ -93,5 +93,12 @@ namespace Sudoku
 
             return missingNums;
         }
+
+        // A function to count how many more more you have left until you win
+        // AKA count the blank spaces
+        public int CountAllBlanksRemaining()
+        {
+           return CellValue.Count(i => i == 0);
+        }
     }
 }

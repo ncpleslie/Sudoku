@@ -6,7 +6,7 @@
 - [x] 5. Return possible values in empty space in column
 - [x] 6. Return possible values in empty space in square
 - [x] 7. Reset Game to initial state
-- [ ] 8. Number of moves remaining
+- [x] 8. Number of blank spaces remaining
 - [x] 9. Cells are ReadOnly if contain data
 - [x] 10. Ensure user input is within range
 - [x] 11. Check if row/column/square contains blanks

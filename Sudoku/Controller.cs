@@ -32,7 +32,7 @@ namespace Sudoku
             //Timer timer = new Timer();
             //timer.Start();
             //view.Show("Timer Started");
-
+            view.Show(game.CountAllBlanksRemaining());
             int[] changeCellValue = view.GetIntArray("Please enter a square, index, and new value");
 
             game.SetByRow(changeCellValue[2], changeCellValue[0], changeCellValue[1]);
