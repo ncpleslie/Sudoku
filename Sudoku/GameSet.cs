@@ -82,6 +82,7 @@ namespace Sudoku
                 {
                     StorePreviousTurn();
                     CellValue[rowIndex * MaxValue + columnIndex] = value;
+                    CountTurnsTaken();
                 }
             }
         }
@@ -103,6 +104,7 @@ namespace Sudoku
                 {
                     StorePreviousTurn();
                     CellValue[MaxValue * (rowNum + (positionIndex % SquareWidth)) + (colNum + (positionIndex % SquareWidth))] = value;
+                    CountTurnsTaken();
                 }
             }
         }

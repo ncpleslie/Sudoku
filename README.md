@@ -18,6 +18,7 @@
 - [x] 17. Start Timer
 - [x] 18. Stop Timer
 - [x] 19. Return Time played
+- [x] 20. Count how many turns the play makes
 
 const raw sudoku data = 
 {1,2,3,0,

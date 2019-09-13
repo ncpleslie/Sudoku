@@ -76,6 +76,7 @@ namespace Sudoku
             int[] replacement = _previousTurns.Pop();
             replacement.CopyTo(CellValue, 0);
             _redoTurns.Push(replacement);
+            CountTurnsUndo();
         }
 
         public void GoForward()
@@ -83,6 +84,7 @@ namespace Sudoku
             int[] replacement = _redoTurns.Pop();
             replacement.CopyTo(CellValue, 0);
             _previousTurns.Push(replacement);
+            CountTurnsTaken();
         }
 
         // used to check a Row, Column, or Square,
@@ -108,6 +110,18 @@ namespace Sudoku
         public int CountAllBlanksRemaining()
         {
            return CellValue.Count(i => i == 0);
+        }
+
+        // Count how many turns the play has made
+        private int _countTurns = 0;
+        public int CountTurnsTaken()
+        {
+            return _countTurns++;
+        }
+
+        public int CountTurnsUndo()
+        {
+            return _countTurns--;
         }
     }
 }
