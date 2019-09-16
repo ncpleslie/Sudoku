@@ -4,7 +4,7 @@ using System.Linq;
 namespace Sudoku
 {
     // This class is used check if a Row, Column, or Square are valid
-    class ValidityChecker : IValidityChecker
+    public class ValidityChecker : IValidityChecker
     {
         private List<int> listToBeChecked;
         private readonly int maxValue;
@@ -51,7 +51,7 @@ namespace Sudoku
             bool isValid = false;
             foreach (int num in listToBeChecked)
             {
-                if (num < maxValue || num > 0)
+                if (num <= maxValue && num > 0)
                 {
                     isValid = true;
                 }

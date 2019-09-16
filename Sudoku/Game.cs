@@ -97,12 +97,7 @@ namespace Sudoku
         // 1 and the max number
         public List<int> ListPossibleValues()
         {
-            List<int> missingNums = new List<int> { };
-            IEnumerable<int> range = Enumerable.Range(start: 1, count: MaxValue);
-
-            missingNums = range.Except(_listToBeChecked).ToList();
-
-            return missingNums;
+            return Enumerable.Range(1, MaxValue).Except(_listToBeChecked).ToList();
         }
 
         // A function to count how many more more you have left until you win

@@ -131,13 +131,39 @@ namespace Tests
         }
 
         // Set tests
+        // Boundary Test
         [Test]
         public void SetByColumn_NumberIsValid_ChangesCellValue()
         {
-            var newValue = 3;
+            var newValue = 1;
             game.SetByColumn(newValue, 1, 0);
             bool result = game.CellValue[1] == newValue ? true : false;
             Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void SetByColumn_NumberIsValidTwo_ChangesCellValue()
+        {
+            var newValue = 4;
+            game.SetByColumn(newValue, 1, 0);
+            bool result = game.CellValue[1] == newValue ? true : false;
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void SetByColumn_NumberIsInalid_DoesntChange()
+        {
+            var newValue = 5;
+            var ex = Assert.Throws<InvalidOperationException>(() => game.SetByColumn(newValue, 0, 0));
+            Assert.AreEqual(ex.Message, "number out of range");
+        }
+
+        [Test]
+        public void SetByColumn_NumberIsInalidTwo_DoesntChange()
+        {
+            var newValue = 0;
+            var ex = Assert.Throws<InvalidOperationException>(() => game.SetByColumn(newValue, 0, 0));
+            Assert.AreEqual(ex.Message, "number out of range");
         }
 
         [Test]
@@ -270,5 +296,101 @@ namespace Tests
             var value = game.GetBySquare(1, 0);
             Assert.AreEqual(expectedResult, value);
         }
+
+        // Extra feature tests
+        // Timer
+        [Test]
+        public void StartTimer_TimerRunningShouldBeTrue()
+        {
+            Timer timer = new Timer();
+            timer.Start();
+            var ex = Assert.Throws<InvalidOperationException>(() => timer.Start());
+            Assert.AreEqual(ex.Message, "Stopwatch is already running");
+        }
+
+        [Test]
+        public void StartAndStopTimer_ReturnDifferenceInTime()
+        {
+            Timer timer = new Timer();
+            timer.Start();
+            System.Threading.Thread.Sleep(1000);
+            timer.Stop();
+            var time = timer.GetTime();
+            Assert.IsInstanceOf<string>(time);
+        }
+
+        // Validity Checker
+        [Test]
+        public void ValidityChecker_InvalidRowWithBlanks_ReturnFalse()
+        {
+            var row = new List<int> { 0, 2, 3, 4 };
+            ValidityChecker validityChecker = new ValidityChecker(game, row);
+            var result = validityChecker.ListValid();
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void ValidityChecker_InvalidRowWithDuplicate_ReturnFalse()
+        {
+            var row = new List<int> { 4, 2, 3, 4 };
+            ValidityChecker validityChecker = new ValidityChecker(game, row);
+            var result = validityChecker.ListValid();
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void ValidityChecker_InvalidRowWithInvalidRange_ReturnFalse()
+        {
+            var row = new List<int> { 5, 2, 3, 4 };
+            ValidityChecker validityChecker = new ValidityChecker(game, row);
+            var result = validityChecker.ListValid();
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void ValidityChecker_ValidRow_ReturnTrue()
+        {
+            var row = new List<int> { 1, 2, 3, 4 };
+            ValidityChecker validityChecker = new ValidityChecker(game, row);
+            var result = validityChecker.ListValid();
+            Assert.IsTrue(result);
+        }
+
+        // ListPossibleValue
+        [Test]
+        public void ListPossibleValue_IncompleteRow_Return1()
+        {
+            game.GetByRow(0);
+            int missingValueOne = 4;
+            var result = game.ListPossibleValues();
+            Console.WriteLine(string.Join(" ", result));
+            Assert.That(result.Any(p => p == missingValueOne));
+        }
+
+        [Test]
+        public void ListPossibleValue_ZCompleteRow_ReturnNothing()
+        {
+            game.GetByRow(1);
+            int len = 0;
+            var result = game.ListPossibleValues();
+            Assert.That(result, Has.Count.EqualTo(len));
+        }
+
+        [Test]
+        public void CountAllBlanks__ReturnThree()
+        {
+            int expectedResult = 3;
+            int result = game.CountAllBlanksRemaining();
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        public void CountTurnsTaken__ReturnOne()
+        {
+            int expectedResult = 3;
+            int result = game.CountAllBlanksRemaining();
+            Assert.AreEqual(expectedResult, result);
+        }
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Sudoku
 {
-    class Timer
+    public class Timer
     {
         private DateTime _startTime = new DateTime();
         private DateTime _stopTime = new DateTime();
