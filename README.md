@@ -1,3 +1,11 @@
+## Requirements
+- [ ] Class Diagram - incomplete
+- [ ] Dynamic UML diagrams - 2 so far - 2 more
+- [ ] > 20 Scoped features - Currently at 20 - 1 more
+- [ ] All features plus documentation
+- [x] >40 tests
+- [x] All tests pass
+
 ## Feature List
 - [x] 1. Check if row is valid
 - [x] 2. Check if column is valid
@@ -19,43 +27,3 @@
 - [x] 18. Stop Timer
 - [x] 19. Return Time played
 - [x] 20. Count how many turns the play makes
-
-const raw sudoku data = 
-{1,2,3,0,
-2,2,3,0}
-
-for loop = i = 0 to < maxNum
-var row
-for loop = j = 0 to < maxNum
-var value = raw[i*maxNum+j]
-var col = value
-
-0*4+0 = 0 index
-0*4+1 = 1 index
-...
-0*4+4 = 3 index
-
-next row
-1*4+0 = 4 index
-
-put row and column num 
-
-row = 2
-col = 2
-row -1
-col -1
-
-var value = raw[i*maxNum+j]
-
-1*4+1 = 5 index
-ans = 4
-
-row = 1
-col = 2
-row -1
-col -1
-
-var value = raw[i*maxNum+j]
-
-0*4+1 = 1 index
-
