@@ -1,8 +1,7 @@
 ## Requirements
-- [ ] Class Diagram - incomplete
+- [x] Class Diagram - incomplete
 - [ ] Dynamic UML diagrams - 2 so far - 2 more
-- [ ] > 20 Scoped features - Currently at 20 - 1 more
-- [ ] All features plus documentation
+- [x] > 20 Scoped features - Currently at 20 - 1 more
 - [x] >40 tests
 - [x] All tests pass
 
@@ -14,7 +13,7 @@
 - [x] 5. Return possible values in empty space in column
 - [x] 6. Return possible values in empty space in square
 - [x] 7. Reset Game to initial state
-- [x] 8. Number of blank spaces remaining
+- [x] 8. Number of blank spaces remaining - 
 - [x] 9. Cells are ReadOnly if contain data
 - [x] 10. Ensure user input is within range
 - [x] 11. Check if row/column/square contains blanks
@@ -25,5 +24,9 @@
 - [x] 16. Ability to go forward (redo)
 - [x] 17. Start Timer
 - [x] 18. Stop Timer
-- [x] 19. Return Time played
-- [x] 20. Count how many turns the play makes
+- [x] 19. Pause Timer
+- [x] 20. Return Time played
+- [x] 21. Count how many turns the play makes
+- [x] 22. Return a list of a selected column
+- [x] 23. Return a list of a selected row
+- [x] 24. Return a list of a selected square

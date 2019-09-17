@@ -6,6 +6,8 @@ namespace Sudoku
     {
         private DateTime _startTime = new DateTime();
         private DateTime _stopTime = new DateTime();
+        private DateTime _pauseTimeStart = new DateTime();
+        private DateTime _pauseTimeEnd = new DateTime();
         private TimeSpan _time = new TimeSpan();
         private bool _running;
 
@@ -14,7 +16,16 @@ namespace Sudoku
             if (_running)
                 throw new InvalidOperationException("Stopwatch is already running");
 
-            _startTime = DateTime.Now;
+            if (_stopTime != DateTime.MinValue)
+            {
+                _pauseTimeEnd = DateTime.Now;
+                TimeSpan difference = _pauseTimeEnd - _pauseTimeStart;
+                _startTime = _startTime + difference;
+            }
+            else
+            {
+                _startTime = DateTime.Now;
+            }
             _running = true;
         }
 
@@ -24,6 +35,7 @@ namespace Sudoku
                 throw new InvalidOperationException("Stopwatch is not running");
 
             _stopTime = DateTime.Now;
+            _pauseTimeStart = DateTime.Now;
             _running = false;
         }
 
